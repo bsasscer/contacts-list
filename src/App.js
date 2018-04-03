@@ -10,13 +10,13 @@ class App extends Component {
                 "id": "karen",
                 "name": "Karen Isgrigg",
                 "handle": "karen_isgrigg",
-                "avatarURL": "http://localhost:5001/karen.jpg"
+                "avatarURL": "http://localhost:5001/city.jpg"
             },
             {
                 "id": "richard",
                 "name": "Richard Kalehoff",
                 "handle": "richardkalehoff",
-                "avatarURL": "http://localhost:5001/richard.jpg"
+                "avatarURL": "http://localhost:5001/trees.jpg"
             },
             {
                 "id": "tyler",
@@ -27,10 +27,21 @@ class App extends Component {
         ]
     }
 
+    removeContact = (contact) => {
+        this.setState((currentState) => ({
+            contacts: currentState.contacts.filter((c) => {
+                return c.id !== contact.id
+            })
+        }))
+    }
+
     render() {
         return (
             <div>
-                <ListContacts contacts={this.state.contacts} />
+                <ListContacts
+                    contacts={this.state.contacts}
+                    onDeleteContact={this.removeContact}
+                />
             </div>
         );
     }
